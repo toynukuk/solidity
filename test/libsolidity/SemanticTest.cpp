@@ -225,6 +225,10 @@ TestCase::TestResult SemanticTest::runTest(ostream& _stream, string const& _line
 			}
 		}
 
+		std::stringstream _oyut;
+		printUpdatedExpectations(_oyut, "");
+		cout << _oyut.str() << "\n";
+
 		if (success && !m_runWithYul && _compileViaYul)
 		{
 			m_compileViaYulCanBeSet = true;

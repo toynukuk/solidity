@@ -64,17 +64,16 @@ object "D_14" {
                             returndatacopy(_1, _1, returndatasize())
                             revert(_1, returndatasize())
                         }
-                        return(allocateMemory(_1), _1)
+                        return(allocateMemory_137(), _1)
                     }
                 }
                 revert(0, 0)
             }
-            function allocateMemory(size) -> memPtr
+            function allocateMemory_137() -> memPtr
             {
                 memPtr := mload(64)
-                let newFreePtr := add(memPtr, size)
-                if or(gt(newFreePtr, 0xffffffffffffffff), lt(newFreePtr, memPtr)) { invalid() }
-                mstore(64, newFreePtr)
+                if gt(memPtr, 0xffffffffffffffff) { invalid() }
+                mstore(64, memPtr)
             }
         }
         object "C_3" {

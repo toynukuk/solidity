@@ -42,7 +42,7 @@ object "Arraysum_34" {
                             if gt(vloc_sum, not(_3)) { invalid() }
                             vloc_sum := add(vloc_sum, _3)
                         }
-                        let memPos := allocateMemory(_1)
+                        let memPos := allocateMemory_380()
                         return(memPos, sub(abi_encode_uint(memPos, vloc_sum), memPos))
                     }
                 }
@@ -53,12 +53,11 @@ object "Arraysum_34" {
                 tail := add(headStart, 32)
                 mstore(headStart, value0)
             }
-            function allocateMemory(size) -> memPtr
+            function allocateMemory_380() -> memPtr
             {
                 memPtr := mload(64)
-                let newFreePtr := add(memPtr, size)
-                if or(gt(newFreePtr, 0xffffffffffffffff), lt(newFreePtr, memPtr)) { invalid() }
-                mstore(64, newFreePtr)
+                if gt(memPtr, 0xffffffffffffffff) { invalid() }
+                mstore(64, memPtr)
             }
         }
     }

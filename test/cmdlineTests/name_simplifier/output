@@ -56,7 +56,7 @@ object "C_56" {
                             src := add(src, _3)
                         }
                         let ret, ret_1 := fun_sumArray_55(dst_1)
-                        let memPos := allocateMemory(_2)
+                        let memPos := allocateMemory_1217()
                         return(memPos, sub(abi_encode_uint256_t_string(memPos, ret, ret_1), memPos))
                     }
                 }
@@ -79,6 +79,12 @@ object "C_56" {
                     mstore(add(add(headStart, length), 96), tail)
                 }
                 tail := add(add(headStart, and(add(length, 31), not(31))), 96)
+            }
+            function allocateMemory_1217() -> memPtr
+            {
+                memPtr := mload(64)
+                if gt(memPtr, 0xffffffffffffffff) { invalid() }
+                mstore(64, memPtr)
             }
             function allocateMemory(size) -> memPtr
             {
@@ -109,7 +115,7 @@ object "C_56" {
                 let _1 := mload(vloc__s_19_mpos)
                 if iszero(lt(vloc, _1)) { invalid() }
                 let _2 := mload(mload(add(add(vloc__s_19_mpos, mul(vloc, 32)), 32)))
-                let _3, _4 := storage_array_index_access$_t_struct$_S_storage(vloc, vloc)
+                let _3, _4 := storage_array_index_access$_t_struct$_S_storage_1219()
                 sstore(_3, _2)
                 if iszero(lt(0x01, _1)) { invalid() }
                 let _5 := mload(mload(add(vloc__s_19_mpos, 64)))
@@ -119,14 +125,20 @@ object "C_56" {
                 let shiftBits := mul(vloc, 8)
                 let mask := shl(shiftBits, not(0))
                 sstore(slot, or(and(_6, not(mask)), and(shl(shiftBits, _5), mask)))
-                let _7, _8 := storage_array_index_access$_t_struct$_S_storage(0x02, vloc)
+                let _7, _8 := storage_array_index_access$_t_struct$_S_storage_1220()
                 vloc := extract_from_storage_value_dynamict_uint256(sload(_7), _8)
                 vloc__24_mpos := convert_t_stringliteral_6490_to_t_string()
             }
-            function storage_array_index_access$_t_struct$_S_storage(array, index) -> slot, offset
+            function storage_array_index_access$_t_struct$_S_storage_1219() -> slot, offset
             {
-                if iszero(lt(index, 0x02)) { invalid() }
-                slot := add(array, index)
+                if iszero(lt(slot, 0x02)) { invalid() }
+                slot := add(slot, slot)
+                offset := offset
+            }
+            function storage_array_index_access$_t_struct$_S_storage_1220() -> slot, offset
+            {
+                if iszero(lt(slot, 0x02)) { invalid() }
+                slot := add(0x02, slot)
                 offset := offset
             }
         }

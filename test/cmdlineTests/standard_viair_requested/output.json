@@ -133,6 +133,8 @@ object \"D_16\" {
                 if iszero(expr_12_address) { revert_forward_1() }
 
                 releaseTemporaryMemory()
+                let vloc_c_7_address := expr_10_address
+                let var_c_7_address := expr_10_address
                 let vloc_c_8_address := expr_12_address
 
             }

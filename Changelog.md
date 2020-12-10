@@ -67,6 +67,7 @@ Compiler Features:
  * SMTChecker: Apply constant evaluation on binary arithmetic expressions.
  * SMTChecker: Create underflow and overflow verification targets for increment/decrement in the CHC engine.
  * SMTChecker: Report struct values in counterexamples from CHC engine.
+ * SMTChecker: Support ABI functions as uninterpreted functions.
  * SMTChecker: Support early returns in the CHC engine.
  * SMTChecker: Support getters.
  * SMTChecker: Support named arguments in function calls.

@@ -1737,7 +1737,14 @@ void IRGeneratorForStatements::endVisit(MemberAccess const& _memberAccess)
 		}
 		else if (member == "name")
 		{
-			solUnimplementedAssert(false, "");
+			TypePointer arg = dynamic_cast<MagicType const&>(*_memberAccess.expression().annotation().type).typeArgument();
+			ContractDefinition const& contract = dynamic_cast<ContractType const&>(*arg).contractDefinition();
+			m_code << Whiskers(R"(
+				let <result> := <copyLiteralToMemory>()
+			)")
+			("result", IRVariable(_memberAccess).commaSeparatedList())
+			("copyLiteralToMemory", m_utils.copyToMemoryLiteralFunction(contract.name()))
+			.render();
 		}
 		else if (member == "interfaceId")
 		{

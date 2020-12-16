@@ -21,6 +21,5 @@ contract C
 // Warning 6328: (208-240): CHC: Assertion violation happens here.\nCounterexample:\n\n\n\n\nTransaction trace:\nconstructor()\nf()
 // Warning 6328: (244-275): CHC: Assertion violation happens here.\nCounterexample:\n\n\n\n\nTransaction trace:\nconstructor()\nf()
 // Warning 4984: (311-316): CHC: Overflow (resulting value larger than 2**256 - 1) happens here.\nCounterexample:\n\n\n\n\nTransaction trace:\nconstructor()\nf()
-// Warning 6328: (304-332): CHC: Assertion violation happens here.\nCounterexample:\n\n\n\n\nTransaction trace:\nconstructor()\nf()
 // Warning 6328: (336-364): CHC: Assertion violation happens here.\nCounterexample:\n\n\n\n\nTransaction trace:\nconstructor()\nf()
 // Warning 6328: (368-391): CHC: Assertion violation happens here.\nCounterexample:\n\n\n\n\nTransaction trace:\nconstructor()\nf()

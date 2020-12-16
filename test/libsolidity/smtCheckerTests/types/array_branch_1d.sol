@@ -11,4 +11,4 @@ contract C
 }
 // ----
 // Warning 2018: (47-148): Function state mutability can be restricted to pure
-// Warning 6328: (128-144): CHC: Assertion violation happens here.\nCounterexample:\n\nb = false\nc = [0, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 18, 14, 14, 21, 14, 14, 23, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14]\n\n\nTransaction trace:\nconstructor()\nf(false, [7719, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 18, 14, 14, 21, 14, 14, 23, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14])
+// Warning 6328: (128-144): CHC: Assertion violation happens here.\nCounterexample:\n\nb = false\n\n\nTransaction trace:\nconstructor()\nf(false, c)

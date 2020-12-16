@@ -310,6 +310,25 @@ void SMTEncoder::endVisit(FunctionDefinition const&)
 		m_context.popSolver();
 }
 
+bool SMTEncoder::visit(Block const& _block)
+{
+	if (_block.unchecked())
+	{
+		solAssert(m_checked, "");
+		m_checked = false;
+	}
+	return true;
+}
+
+void SMTEncoder::endVisit(Block const& _block)
+{
+	if (_block.unchecked())
+	{
+		solAssert(!m_checked, "");
+		m_checked = true;
+	}
+}
+
 bool SMTEncoder::visit(InlineAssembly const& _inlineAsm)
 {
 	m_errorReporter.warning(
@@ -771,6 +790,7 @@ void SMTEncoder::initContract(ContractDefinition const& _contract)
 	m_context.pushSolver();
 	createStateVariables(_contract);
 	clearIndices(m_currentContract, nullptr);
+	m_checked = true;
 }
 
 void SMTEncoder::initFunction(FunctionDefinition const& _function)
@@ -785,6 +805,7 @@ void SMTEncoder::initFunction(FunctionDefinition const& _function)
 	createLocalVariables(_function);
 	m_arrayAssignmentHappened = false;
 	clearIndices(m_currentContract, &_function);
+	m_checked = true;
 }
 
 void SMTEncoder::visitAssert(FunctionCall const& _funCall)
@@ -1788,6 +1809,9 @@ pair<smtutil::Expression, smtutil::Expression> SMTEncoder::arithmeticOperation(
 		}
 	}();
 
+	if (m_checked)
+		return {valueUnbounded, valueUnbounded};
+
 	if (_op == Token::Div || _op == Token::Mod)
 	{
 		// mod and unsigned division never underflow/overflow
@@ -2411,6 +2435,16 @@ void SMTEncoder::defineExpr(Expression const& _e, smtutil::Expression _value)
 	createExpr(_e);
 	solAssert(_value.sort->kind != smtutil::Kind::Function, "Equality operator applied to type that is not fully supported");
 	m_context.addAssertion(expr(_e) == _value);
+
+	if (
+		auto type = _e.annotation().type;
+		m_checked && smt::isNumber(*type)
+	)
+		m_context.addAssertion(smtutil::Expression::implies(
+			currentPathConditions(),
+			smt::symbolicUnknownConstraints(expr(_e), type)
+		));
+
 }
 
 void SMTEncoder::popPathCondition()

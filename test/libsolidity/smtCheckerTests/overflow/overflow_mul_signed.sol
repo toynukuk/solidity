@@ -13,4 +13,3 @@ contract C
 }
 // ----
 // Warning 4984: (117-122): CHC: Overflow (resulting value larger than 127) happens here.\nCounterexample:\n\nx = 100\n = 0\n\nTransaction trace:\nconstructor()\nf(0)
-// Warning 4984: (150-157): CHC: Overflow (resulting value larger than 127) happens here.\nCounterexample:\n\nx = 100\n = 0\n\nTransaction trace:\nconstructor()\nf(0)

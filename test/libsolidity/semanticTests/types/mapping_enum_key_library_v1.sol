@@ -1,3 +1,4 @@
+pragma abicoder v1;
 enum E { A, B, C }
 library L {
     function get(mapping(E => uint8) storage table, E k) external returns (uint8) {
@@ -18,7 +19,7 @@ contract test {
 }
 // ====
 // EVMVersion: >=byzantium
-// ABIEncoderV1Only: true
+// compileViaYul: false
 // ----
 // library: L
 // get(uint8): 0 -> 0

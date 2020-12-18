@@ -5,6 +5,7 @@ Compiler Features:
  * SMTChecker: Support ABI functions as uninterpreted functions.
 
 Bugfixes:
+ * Parser: Mark the empty version pragma as invalid (``pragma solidity;``).
  * SMTChecker: Fix false negatives in overriding modifiers.
 
 ### 0.8.0 (2020-12-16)

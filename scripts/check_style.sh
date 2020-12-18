@@ -8,7 +8,8 @@ cd $REPO_ROOT
 
 WHITESPACE=$(git grep -n -I -E "^.*[[:space:]]+$" |
   grep -v "test/libsolidity/ASTJSON\|test/libsolidity/ASTRecoveryTests\|test/compilationTests/zeppelin/LICENSE" |
-  grep -v -E "test/libsolidity/syntaxTests/comments/unicode_direction_override_1.sol"
+  grep -v -E "test/libsolidity/syntaxTests/comments/unicode_direction_override_1.sol" |
+  grep -v -E "test/libsolidity/syntaxTests/license/license_whitespace_3.sol"
 )
 
 if [[ "$WHITESPACE" != "" ]]

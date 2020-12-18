@@ -3,6 +3,7 @@
 Compiler Features:
  * Parser: Report meaningful error if parsing a version pragma failed.
  * SMTChecker: Support ABI functions as uninterpreted functions.
+ * SMTChecker: Use checked arithmetic by default and support ``unchecked`` blocks.
 
 Bugfixes:
  * SMTChecker: Fix false negatives in overriding modifiers.
@@ -67,7 +68,6 @@ Compiler Features:
  * SMTChecker: Apply constant evaluation on binary arithmetic expressions.
  * SMTChecker: Create underflow and overflow verification targets for increment/decrement in the CHC engine.
  * SMTChecker: Report struct values in counterexamples from CHC engine.
- * SMTChecker: Support ABI functions as uninterpreted functions.
  * SMTChecker: Support early returns in the CHC engine.
  * SMTChecker: Support getters.
  * SMTChecker: Support named arguments in function calls.
